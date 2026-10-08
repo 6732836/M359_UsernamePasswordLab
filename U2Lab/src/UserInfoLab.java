@@ -1,13 +1,25 @@
+import java.util.Scanner;
+
 public class UserInfoLab {
     public static void main(String[] args) {
         // Part 1
         // Create a Scanner for keyboard input
         // Ask the user to enter their first and last name and pass these
         // values to the generateUsername method and save the returned result.
+        Scanner scan = new Scanner(System.in);
+        String first, last;
 
+        System.out.print("Can you please enter your first name?");
+        first = scan.nextLine();
+
+        System.out.print("Can you please enter your last name?");
+        last = scan.nextLine();
+
+        System.out.print(generateUsername(first, last));
         // Part 2
         // Ask the user to enter a password and pass this value to the validatePassword method.
         // The validatePassword method will check if the password meets the criteria:
+        System.out.print("Can you please enter your password?");
 
         // Part 3
         // If the user entered a valid password in step 2, then ask the user to enter their
@@ -21,8 +33,28 @@ public class UserInfoLab {
     }
 
     public static String generateUsername(String firstName, String lastName) {
-        // Fill in this method and return an appropriate username
-        return "";
+        String result = "";
+        if(firstName.length() < 3|| lastName.length() < 3){
+            if(firstName.length() < 3){
+                result += firstName;
+            }
+            else{
+                result += firstName.substring(0, 3);
+            }
+            if(lastName.length()<3){
+                result += lastName;
+            }
+            else{
+                result += lastName.substring(0, 3);
+            }
+        }
+        else{
+            result += firstName.substring(0, 3);
+            result += lastName.substring(0, 3);
+        }
+
+        result = result.toLowerCase();
+        return result;
     }
     public static boolean validatePassword(String password) {
         // Fill in this method and return true/false if the password is valid
