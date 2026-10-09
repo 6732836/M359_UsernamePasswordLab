@@ -9,38 +9,41 @@ public class UserInfoLab {
         Scanner scan = new Scanner(System.in);
         String first, last;
 
-        System.out.print("Can you please enter your first name?");
+        System.out.print("Can you please enter your first name?\t");
         first = scan.nextLine();
 
-        System.out.print("Can you please enter your last name?");
+        System.out.print("Can you please enter your last name?\t");
         last = scan.nextLine();
 
-        System.out.println(generateUsername(first, last));
+        System.out.println("Username: "+ generateUsername(first, last)+ '\n');
+        String user = generateUsername(first, last);
         // Part 2
         // Ask the user to enter a password and pass this value to the validatePassword method.
         // The validatePassword method will check if the password meets the criteria:
         String password;
 
-        System.out.print("Can you please enter your password?");
+        System.out.print("Can you please enter your password?\t");
 
         password = scan.nextLine();
-
-        System.out.print(validatePassword(password));
         boolean valPass = validatePassword(password);
         // Part 3
         // If the user entered a valid password in step 2, then ask the user to enter their
         // credit card number and pass this value to the maskCreditCard method.
-        String creditNum;
+        String creditNum = "";
         if(valPass){
-            System.out.print("What is your credit card number?");
+            System.out.print("What is your credit card number?\t");
             creditNum = scan.nextLine();
-            System.out.print(maskCreditCard(creditNum));
         }
+        creditNum = maskCreditCard(creditNum);
         // Part 4
         // If the user entered a valid password AND valid credit card number, display the output
         // as shown in the demo video
         // https://drive.google.com/file/d/1sMOw5wkOgSfuUcvQhFyZ5flnv_d9qQd3/view?usp=sharing
-        if()
+        if(!(creditNum.equals("N/A"))&& valPass){
+            System.out.println("\nFinal details:");
+            System.out.println("Username: \t" + user);
+            System.out.println("Credit card: \t" + creditNum);;
+        }
 
     }
 
@@ -95,6 +98,9 @@ public class UserInfoLab {
         if(!(contDig && contUpper && eightLong)){
             return false;
         }
+        else{
+            System.out.println("Valid password. Checking Credit Card");
+        }
         return true;
     }
     public static String maskCreditCard(String creditCardNumber) {
@@ -103,7 +109,7 @@ public class UserInfoLab {
             for(int i = 1; i<= 3; i++){
                 result += "**** ";
             }
-            result += creditCardNumber.substring(13);
+            result += creditCardNumber.substring(12);
         }
         else{
             result = "N/A";
